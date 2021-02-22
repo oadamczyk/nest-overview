@@ -1,42 +1,56 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity, Index,
-  PrimaryGeneratedColumn,
-  Unique,
-  UpdateDateColumn,
-} from 'typeorm';
-import { IsEmail, IsNotEmpty } from 'class-validator';
-import { Exclude } from 'class-transformer';
+import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
-@Entity({ name: 'users' })
-@Unique(["email"])
-export class User {
-  @PrimaryGeneratedColumn('uuid')
+@Table
+export class User extends Model<User> {
+  @Column({
+    defaultValue: DataType.UUIDV4,
+    primaryKey: true,
+    type: DataType.UUID
+  })
   id: string;
 
-  @Column({ type: 'text', nullable: false, unique: true })
-  @IsEmail()
-  @IsNotEmpty()
-  @Index({ unique: true })
+  @Column({
+      allowNull: false,
+      type: DataType.STRING,
+      unique: true,
+      validate: {
+        notEmpty: true,
+        isEmail: true
+      }
+    }
+  )
   email: string;
 
-  @Column({ type: 'text', nullable: false })
-  @IsNotEmpty()
-  @Exclude()
+  @Column({
+      type: DataType.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    }
+  )
   password: string;
 
-  @CreateDateColumn({ nullable: false })
-  createDate: Date;
+  @Column({
+      type: DataType.DATE,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    }
+  )
+  createdAt: Date;
 
-  @UpdateDateColumn({ nullable: false })
-  updateDate: Date;
+  @Column({
+      type: DataType.DATE,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    }
+  )
+  updatedAt: Date;
 
-  @DeleteDateColumn()
-  deleteDate: Date;
-
-  constructor(partial: Partial<User>) {
-    Object.assign(this, partial);
-  }
+  @Column({ type: DataType.DATE })
+  deletedAt: Date;
 }

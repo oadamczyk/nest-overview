@@ -37,9 +37,12 @@
     "jsonapi-serializer": "^3.6.7",
     "nest-router": "^1.0.9",
     "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
+    "sequelize": "^6.5.0",
+    "sequelize-typescript": "^2.1.0",
     "typeorm": "^0.2.31"
   },
   "devDependencies": {
@@ -50,6 +53,7 @@
     "@types/jest": "^26.0.15",
     "@types/joi": "^17.2.3",
     "@types/node": "^14.14.6",
+    "@types/sequelize": "^4.28.9",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
