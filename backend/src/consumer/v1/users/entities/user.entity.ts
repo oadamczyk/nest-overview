@@ -2,7 +2,7 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
+  Entity, Index,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
@@ -19,6 +19,7 @@ export class User {
   @Column({ type: 'text', nullable: false, unique: true })
   @IsEmail()
   @IsNotEmpty()
+  @Index({ unique: true })
   email: string;
 
   @Column({ type: 'text', nullable: false })
