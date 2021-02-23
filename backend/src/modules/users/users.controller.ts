@@ -24,7 +24,7 @@ export class UsersController {
   @Header('Content-Type', 'application/vnd.api+json')
   @UseInterceptors(new JsonApiSerializationInterceptor(new UserSerializer()))
   @UsePipes(
-    new RequestSchemaValidationPipe("users", "create_user"),
+    new RequestSchemaValidationPipe("users", "create_users"),
     new JsonApiDeserializingPipe({}),
   )
   create(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
@@ -35,7 +35,7 @@ export class UsersController {
   @Header('Content-Type', 'application/vnd.api+json')
   @UseInterceptors(new JsonApiSerializationInterceptor(new UserSerializer()))
   @UsePipes(
-    new RequestSchemaValidationPipe("users", "create_user"),
+    // new RequestSchemaValidationPipe("users", "update_user"),
     new JsonApiDeserializingPipe({}),
   )
   update(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
