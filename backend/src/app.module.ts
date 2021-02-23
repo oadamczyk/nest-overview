@@ -4,15 +4,13 @@ import { routes } from './routes';
 import { TerminusModule } from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './consumer/v1/users/users.module';
-import { HealthController } from './health/health.controller';
-import { User } from './consumer/v1/users/entities/user.entity';
+import { UsersModule } from './modules/users/users.module';
+import { User } from './modules/users/entities/user.entity';
+import { HealthModule } from "./modules/health/health.module";
 
 @Module({
-  controllers: [HealthController],
   imports: [
     RouterModule.forRoutes(routes),
-    TerminusModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -28,6 +26,7 @@ import { User } from './consumer/v1/users/entities/user.entity';
         migrationsDir: 'src/migration',
       },
     }),
+    HealthModule,
     UsersModule,
   ],
 })

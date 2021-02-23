@@ -13,7 +13,6 @@ export class JsonApiSerializationInterceptor implements NestInterceptor {
   constructor(private serializer: SerializerInterface) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    console.log(this.serializer);
     return next.handle().pipe(
       map(data => this.serializer.call(data)),
     );

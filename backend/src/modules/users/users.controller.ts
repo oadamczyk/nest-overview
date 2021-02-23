@@ -11,9 +11,9 @@ import {
 import { UsersCreator } from './services/users.creator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/user.dto';
-import { RequestSchemaValidationPipe } from '../../../pipes/request-schema-validation.pipe';
-import { JsonApiDeserializingPipe } from '../../../pipes/json-api-deserializing.pipe';
-import { JsonApiSerializationInterceptor } from "../../../interceptors/json-api-serialization.interceptor";
+import { RequestSchemaValidationPipe } from '../../pipes/request-schema-validation.pipe';
+import { JsonApiDeserializingPipe } from '../../pipes/json-api-deserializing.pipe';
+import { JsonApiSerializationInterceptor } from "../../interceptors/json-api-serialization.interceptor";
 import { UserSerializer } from "./serializers/user-serializer";
 
 @Controller('users')
@@ -24,8 +24,8 @@ export class UsersController {
   @Header('Content-Type', 'application/vnd.api+json')
   @UseInterceptors(new JsonApiSerializationInterceptor(new UserSerializer()))
   @UsePipes(
-    new RequestSchemaValidationPipe('test'),
-    new JsonApiDeserializingPipe({ test: '123' }),
+    new RequestSchemaValidationPipe("users", "create_user"),
+    new JsonApiDeserializingPipe({}),
   )
   create(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
     return this.usersCreator.call(createUserDto);
@@ -35,8 +35,8 @@ export class UsersController {
   @Header('Content-Type', 'application/vnd.api+json')
   @UseInterceptors(new JsonApiSerializationInterceptor(new UserSerializer()))
   @UsePipes(
-    new RequestSchemaValidationPipe('jest'),
-    new JsonApiDeserializingPipe({ test: '1234' }),
+    new RequestSchemaValidationPipe("users", "create_user"),
+    new JsonApiDeserializingPipe({}),
   )
   update(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
     return this.usersCreator.call(createUserDto);

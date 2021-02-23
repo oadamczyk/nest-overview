@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { plainToClass } from "class-transformer";
 import { validate } from "class-validator";
-import { UnprocessableException } from "../../../../exceptions/unprocessable.exception";
+import { UnprocessableException } from "../../../exceptions/unprocessable.exception";
 
 @Injectable()
 export class UsersCreator {
