@@ -6,16 +6,13 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SerializerInterface } from "../serializers/serializer.interface";
+import { SerializerInterface } from '../serializers/serializer.interface';
 
 @Injectable()
 export class JsonApiSerializationInterceptor implements NestInterceptor {
   constructor(private serializer: SerializerInterface) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    console.log(this.serializer);
-    return next.handle().pipe(
-      map(data => this.serializer.call(data)),
-    );
+    return next.handle().pipe(map((data) => this.serializer.call(data)));
   }
 }

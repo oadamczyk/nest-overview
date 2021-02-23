@@ -7,16 +7,15 @@ import {
   NotAcceptableException,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class JsonApiHeaderValidationInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     if (
       context.switchToHttp().getRequest().headers['content-type'] !==
-      'application/vnd.api+json'
+      'application/vnd.api+json' && context.switchToHttp().getRequest().method != "GET"
     ) {
-      // throw new UnsupportedMediaTypeException();
+      throw new UnsupportedMediaTypeException();
     }
     if (
       context.switchToHttp().getRequest().headers['accept'] !==

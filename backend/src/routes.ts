@@ -1,5 +1,5 @@
 import { Routes } from 'nest-router';
-import { UsersModule } from './consumer/v1/users/users.module';
+import { UsersModule } from './modules/users/users.module';
 
 export const routes: Routes = [
   {

@@ -1,20 +1,21 @@
 import { Controller, Get } from '@nestjs/common';
 import {
   HealthCheck,
+  HealthCheckResult,
   HealthCheckService,
-  TypeOrmHealthIndicator,
+  SequelizeHealthIndicator,
 } from '@nestjs/terminus';
 
 @Controller('health')
 export class HealthController {
   constructor(
     private health: HealthCheckService,
-    private db: TypeOrmHealthIndicator,
+    private db: SequelizeHealthIndicator,
   ) {}
 
   @Get()
   @HealthCheck()
-  check() {
-    return this.health.check([() => this.db.pingCheck('database')]);
+  check(): Promise<HealthCheckResult> {
+    return this.health.check([() => this.db.pingCheck('sequelize')]);
   }
 }
