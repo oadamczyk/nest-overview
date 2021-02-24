@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { HealthController } from './health.controller';
-import { HealthCheckService, SequelizeHealthIndicator } from "@nestjs/terminus";
-import { HealthCheckExecutor } from "@nestjs/terminus/dist/health-check/health-check-executor.service";
+import { HealthCheckService, SequelizeHealthIndicator } from '@nestjs/terminus';
+import { HealthCheckExecutor } from '@nestjs/terminus/dist/health-check/health-check-executor.service';
 
 describe('HealthController', () => {
   let controller: HealthController;
@@ -9,7 +9,11 @@ describe('HealthController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [HealthController],
-      providers: [HealthCheckService, SequelizeHealthIndicator, HealthCheckExecutor]
+      providers: [
+        HealthCheckService,
+        SequelizeHealthIndicator,
+        HealthCheckExecutor,
+      ],
     }).compile();
 
     controller = module.get<HealthController>(HealthController);

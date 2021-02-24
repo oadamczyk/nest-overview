@@ -13,7 +13,8 @@ export class JsonApiHeaderValidationInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     if (
       context.switchToHttp().getRequest().headers['content-type'] !==
-      'application/vnd.api+json' && context.switchToHttp().getRequest().method != "GET"
+        'application/vnd.api+json' &&
+      context.switchToHttp().getRequest().method != 'GET'
     ) {
       throw new UnsupportedMediaTypeException();
     }
