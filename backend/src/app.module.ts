@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { RouterModule } from 'nest-router';
 import { routes } from './routes';
-import { TerminusModule } from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './modules/users/users.module';
 import { User } from './modules/users/entities/user.entity';
-import { HealthModule } from "./modules/health/health.module";
+import { HealthModule } from './modules/health/health.module';
 
 @Module({
   imports: [

@@ -1,6 +1,5 @@
 import {
   Body,
-  ClassSerializerInterceptor,
   Controller,
   Header,
   Patch,
@@ -13,8 +12,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/user.dto';
 import { RequestSchemaValidationPipe } from '../../pipes/request-schema-validation.pipe';
 import { JsonApiDeserializingPipe } from '../../pipes/json-api-deserializing.pipe';
-import { JsonApiSerializationInterceptor } from "../../interceptors/json-api-serialization.interceptor";
-import { UserSerializer } from "./serializers/user-serializer";
+import { JsonApiSerializationInterceptor } from '../../interceptors/json-api-serialization.interceptor';
+import { UserSerializer } from './serializers/user-serializer';
 
 @Controller('users')
 export class UsersController {
@@ -24,7 +23,7 @@ export class UsersController {
   @Header('Content-Type', 'application/vnd.api+json')
   @UseInterceptors(new JsonApiSerializationInterceptor(new UserSerializer()))
   @UsePipes(
-    new RequestSchemaValidationPipe("users", "create_users"),
+    new RequestSchemaValidationPipe('users', 'create_users'),
     new JsonApiDeserializingPipe({}),
   )
   create(@Body() createUserDto: CreateUserDto): Promise<UserDto> {

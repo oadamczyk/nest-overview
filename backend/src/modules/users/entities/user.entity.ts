@@ -2,7 +2,8 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity, Index,
+  Entity,
+  Index,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
@@ -11,7 +12,7 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'users' })
-@Unique(["email"])
+@Unique(['email'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;

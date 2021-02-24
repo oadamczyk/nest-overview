@@ -4,17 +4,16 @@ import { User } from '../entities/user.entity';
 import { UserDto } from '../dto/user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { plainToClass } from "class-transformer";
-import { validate } from "class-validator";
-import { UnprocessableException } from "../../../exceptions/unprocessable.exception";
+import { plainToClass } from 'class-transformer';
+import { validate } from 'class-validator';
+import { UnprocessableException } from '../../../exceptions/unprocessable.exception';
 
 @Injectable()
 export class UsersCreator {
   constructor(
     @InjectRepository(User)
     protected repository: Repository<User>,
-  ) {
-  }
+  ) {}
 
   async call(dto: CreateUserDto): Promise<UserDto> {
     const resource = this.buildResource(dto);

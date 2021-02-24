@@ -1,3 +1,3 @@
-export interface SerializerInterface<T = any> {
+export interface SerializerInterface {
   call(dto);
 }
